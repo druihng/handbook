@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>NodeJS · GitBook</title>
+        <title>模块化 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -73,10 +73,10 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="NodeJS是什么.html" />
+    <link rel="next" href="异步IO.html" />
     
     
-    <link rel="prev" href="../JavaScript/表达式和运算符.html" />
+    <link rel="prev" href="NodeJS是什么.html" />
     
 
     </head>
@@ -527,7 +527,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.9.4.2" data-path="./">
+        <li class="chapter " data-level="1.9.4.2" data-path="./">
             
                 <a href="./">
             
@@ -554,7 +554,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9.4.2.2" data-path="模块化.html">
+        <li class="chapter active" data-level="1.9.4.2.2" data-path="模块化.html">
             
                 <a href="模块化.html">
             
@@ -638,7 +638,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >NodeJS</a>
+        <a href="../../.." >模块化</a>
     </h1>
 </div>
 
@@ -653,7 +653,25 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="nodejs">NodeJS</h1>
+                                <h1 id="&#x6A21;&#x5757;&#x5316;">&#x6A21;&#x5757;&#x5316;</h1>
+<h2 id="1----javascript&#x7684;&#x53D8;&#x8FC1;&#x548C;&#x7F3A;&#x9677;">1.    JavaScript&#x7684;&#x53D8;&#x8FC1;&#x548C;&#x7F3A;&#x9677;</h2>
+<p>JavaScript&#x8BDE;&#x751F;&#x4E4B;&#x521D;&#x65E8;&#x5728;&#x4F5C;&#x4E3A;&#x7F51;&#x9875;&#x811A;&#x672C;&#xFF0C;&#x5B83;&#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x95E8;&#x771F;&#x6B63;&#x7684;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x3002;&#x7531;&#x4E8E;&#x521B;&#x9020;&#x4ED3;&#x4FC3;&#x548C;&#x8981;&#x6C42;&#x5C3D;&#x91CF;&#x7B80;&#x5355;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x81EA;&#x8EAB;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x7F3A;&#x9677;&#x3002;</p>
+<ul>
+<li>&#x6CA1;&#x6709;&#x6A21;&#x5757;&#x7CFB;&#x7EDF;</li>
+<li>&#x6807;&#x51C6;&#x5E93;&#x8F83;&#x5C11;</li>
+<li>&#x6CA1;&#x6709;&#x6807;&#x51C6;&#x63A5;&#x53E3;</li>
+<li>&#x7F3A;&#x4E4F;&#x5305;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;</li>
+</ul>
+<p>&#x968F;&#x7740;&#x4E92;&#x8054;&#x7F51;&#x7684;&#x53D1;&#x5C55;&#xFF0C;JavaScript&#x4E5F;&#x627F;&#x62C5;&#x8D77;&#x4E86;&#x8D8A;&#x6765;&#x8D8A;&#x591A;&#x7684;&#x529F;&#x80FD;&#x6027;&#xFF0C;&#x66F4;&#x591A;&#x7684;&#x7528;&#x6237;&#x9700;&#x6C42;&#x5728;&#x524D;&#x7AEF;&#x5B9E;&#x73B0;&#xFF0C;JavaScript&#x4ECE;&#x8868;&#x5355;&#x6821;&#x9A8C;&#x8DC3;&#x8FC1;&#x5230;&#x5E94;&#x7528;&#x5F00;&#x53D1;&#x7684;&#x7EA7;&#x522B;&#x4E0A;&#x3002;JavaScript&#x7ECF;&#x5386;&#x4E86;&#x5DE5;&#x5177;&#x7C7B;&#x5E93;&#x3001;&#x7EC4;&#x4EF6;&#x5E93;&#x3001;&#x524D;&#x7AEF;&#x6846;&#x67B6;&#x3001;&#x524D;&#x7AEF;&#x5E94;&#x7528;&#x7684;&#x53D8;&#x8FC1;&#xFF0C;&#x5982;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x53D8;&#x8FC1;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;JavaScript&#x76F8;&#x8F83;&#x5176;&#x4ED6;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x7F3A;&#x5C11;&#x6A21;&#x5757;&#x5316;&#x7CFB;&#x7EDF;&#x7684;&#x7F3A;&#x70B9;&#x66F4;&#x52A0;&#x51F8;&#x663E;&#x3002;&#x4E3A;&#x4E86;&#x66F4;&#x597D;&#x5730;&#x7EC4;&#x7EC7;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#xFF0C;JavaScript&#x4E0D;&#x65AD;&#x88AB;&#x7C7B;&#x805A;&#x548C;&#x62BD;&#x8C61;&#xFF0C;&#x4E8E;&#x662F;&#x5F00;&#x59CB;&#x4E86;&#x5BF9;JavaScript&#x8FDB;&#x884C;&#x6A21;&#x5757;&#x5316;&#x7684;&#x8FDB;&#x7A0B;&#x3002;</p>
+<h2 id="2----&#x6A21;&#x5757;&#x5316;&#x8FDB;&#x7A0B;">2.    &#x6A21;&#x5757;&#x5316;&#x8FDB;&#x7A0B;</h2>
+<h3 id="&#x607C;&#x4EBA;&#x7684;&#x547D;&#x540D;&#x51B2;&#x7A81;">&#x607C;&#x4EBA;&#x7684;&#x547D;&#x540D;&#x51B2;&#x7A81;</h3>
+<h3 id="&#x7E41;&#x7410;&#x7684;&#x6587;&#x4EF6;&#x4F9D;&#x8D56;">&#x7E41;&#x7410;&#x7684;&#x6587;&#x4EF6;&#x4F9D;&#x8D56;</h3>
+<h3 id="commonjs-&#x793E;&#x533A;">CommonJS &#x793E;&#x533A;</h3>
+<h3 id="commonjs&#x89C4;&#x8303;">CommonJS&#x89C4;&#x8303;</h3>
+<h3 id="amd&#x89C4;&#x8303;&#x548C;requirejs">AMD&#x89C4;&#x8303;&#x548C;RequireJS</h3>
+<h3 id="cmd&#x89C4;&#x8303;&#x548C;seajs">CMD&#x89C4;&#x8303;&#x548C;SeaJS</h3>
+<h2 id="3----commonjs&#x7684;&#x6A21;&#x5757;&#x89C4;&#x8303;">3.    CommonJS&#x7684;&#x6A21;&#x5757;&#x89C4;&#x8303;</h2>
 
                                 
                                 </section>
@@ -681,12 +699,12 @@
 
             
                 
-                <a href="../JavaScript/表达式和运算符.html" class="navigation navigation-prev " aria-label="Previous page: 表达式和运算符">
+                <a href="NodeJS是什么.html" class="navigation navigation-prev " aria-label="Previous page: NodeJS是什么？">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="NodeJS是什么.html" class="navigation navigation-next " aria-label="Next page: NodeJS是什么？">
+                <a href="异步IO.html" class="navigation navigation-next " aria-label="Next page: 异步IO">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -697,7 +715,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"NodeJS","level":"1.9.4.2","depth":3,"next":{"title":"NodeJS是什么？","level":"1.9.4.2.1","depth":4,"path":"Stack/JS/NodeJS/NodeJS是什么.md","ref":"Stack/JS/NodeJS/NodeJS是什么.md","articles":[]},"previous":{"title":"表达式和运算符","level":"1.9.4.1.9","depth":4,"path":"Stack/JS/JavaScript/表达式和运算符.md","ref":"Stack/JS/JavaScript/表达式和运算符.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["back-to-top-button","chapter-fold","code","splitter"],"pluginsConfig":{"chapter-fold":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Stack/JS/NodeJS/README.md","mtime":"2019-12-29T07:07:32.984Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-29T15:01:55.881Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"模块化","level":"1.9.4.2.2","depth":4,"next":{"title":"异步IO","level":"1.9.4.2.3","depth":4,"path":"Stack/JS/NodeJS/异步IO.md","ref":"Stack/JS/NodeJS/异步IO.md","articles":[]},"previous":{"title":"NodeJS是什么？","level":"1.9.4.2.1","depth":4,"path":"Stack/JS/NodeJS/NodeJS是什么.md","ref":"Stack/JS/NodeJS/NodeJS是什么.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["back-to-top-button","chapter-fold","code","splitter"],"pluginsConfig":{"chapter-fold":{},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Stack/JS/NodeJS/模块化.md","mtime":"2019-12-29T14:43:58.625Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-29T15:01:55.881Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
