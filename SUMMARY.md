@@ -1,10 +1,13 @@
 # Summary
 
 * [概述](README.md)
-* [计算机系统](Computer Systems/README.md)
-    * [计算机终端（Computer-Terminal）](Computer Systems/Computer-Terminal.md)
-    * [Linux](Computer Systems/Linux/README.md)
-        * [Unix-like系统管理操作](Computer Systems/Linux/Unix-like系统管理操作/README.md)
+* [计算机系统](计算机系统/README.md)
+    * [计算机终端（Computer-Terminal）](计算机系统/Computer-Terminal.md)
+    * [Linux](计算机系统/Linux/README.md)
+        * [Unix-like系统管理操作](计算机系统/Linux/Unix-like系统管理操作/README.md)
+    * [服务搭建](计算机系统/服务搭建/README.md)
+        * [Nexus](计算机系统/服务搭建/Nexus/README.md)
+            * [Install](计算机系统/服务搭建/Nexus/Install.md)
 * [算法和数据结构](算法和数据结构/REAMME.md)
 * [Database](Database/README.md)
 * [Network](Network/README.md)
