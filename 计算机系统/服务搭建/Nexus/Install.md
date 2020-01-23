@@ -17,6 +17,7 @@ Nexus是一个存储库管理系统，在程序供应链中管理二进制库和
 
 # Install
 
+
 ### 1.	系统要求
 
 对于主机系统，支持部分Windows、Linux和苹果操作系统，只要这些系统能够运行相应的Java版本，都可以很好地安装和运行Nexus。
@@ -60,6 +61,14 @@ Nexus分为Pro和OSS版本，Pro是商业版，OSS是社区版。目前Nexus的�
 #### 下载地址
 
 https://help.sonatype.com/repomanager3/download/download-archives---repository-manager-3
+
+https://help.sonatype.com/repomanager3/download
+
+https://help.sonatype.com/repomanager3/release-notes
+
+### See how the versions compare
+
+https://www.sonatype.com/nexus-repository-oss-vs.-pro-features
 
 
 
@@ -197,4 +206,6 @@ Blob用于存储数据，而数据相关的元数据和信息则保存在数据�
 创建好存储库，即可向存储库上传代码包等
 
 ![1CNgZq.png](https://s2.ax1x.com/2020/01/19/1CNgZq.png)
+
+
 
