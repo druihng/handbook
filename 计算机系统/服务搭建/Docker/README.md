@@ -293,6 +293,209 @@ root@fe7fc4bd8fc9:/#
 
 #### 4.	创建镜像
 
+当我们从docker镜像仓库中下载的镜像不能满足我们的需求时，我们可以通过以下两种方式对镜像进行更改。
+
+- 1、从已经创建的容器中更新镜像，并且提交这个镜像
+- 2、使用 Dockerfile 指令来创建一个新的镜像
+
+##### 4.1 更新镜像 （修改已有镜像）
+
+根据一个基础镜像来创建一个容器，对该容器做一些更新修改，最后再以此容器创建一个新的镜像。
+
+**docker commit**
+
+> ```none
+>docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+> ```
+> 
+> | Name, shorthand  | Default | Description                                                  |
+>| ---------------- | ------- | ------------------------------------------------------------ |
+> | `--author , -a`  |         | Author (e.g., “John Hannibal Smith [hannibal@a-team.com](mailto:hannibal@a-team.com)”) |
+>| `--change , -c`  |         | Apply Dockerfile instruction to the created image            |
+> | `--message , -m` |         | Commit message                                               |
+> | `--pause , -p`   | `true`  | Pause container during commit                                |
+
+**Examples**
+
+*Commit a container*
+
+```sh
+$ docker ps
+
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS              NAMES
+c3f279d17e0a        ubuntu:12.04        /bin/bash           7 days ago          Up 25 hours                            desperate_dubinsky
+197387f1b436        ubuntu:12.04        /bin/bash           7 days ago          Up 25 hours                            focused_hamilton
+
+$ docker commit c3f279d17e0a  svendowideit/testimage:version3
+
+f5283438590d
+
+$ docker images
+
+REPOSITORY                        TAG                 ID                  CREATED             SIZE
+svendowideit/testimage            version3            f5283438590d        16 seconds ago      335.7 MB
+```
+
+
+
+##### 4.2 构建镜像 （利用Dockerfile来创建镜像）
+
+​	使用 `docker commit` 来扩展一个镜像比较简单，但是不方便在一个团队中分享。我们可以使用 `docker build`来创建一个新的镜像。为此，首先需要创建一个 Dockerfile，包含一些如何创建镜像的指令。 
+
+​	新建一个镜像
+
+```sh
+$ mkdir centos
+$ cd centos
+$ touch Dockerfile
+$ cat Dockerfile
+FROM    centos:6.7
+MAINTAINER      Fisher "fisher@sudops.com"
+
+RUN     /bin/echo 'root:123456' |chpasswd
+RUN     useradd runoob
+RUN     /bin/echo 'runoob:123456' |chpasswd
+RUN     /bin/echo -e "LANG=\"en_US.UTF-8\"" >/etc/default/local
+EXPOSE  22
+EXPOSE  80
+CMD     /usr/sbin/sshd -D
+$ sudo docker build -t druihng/centos:6.7 .
+Sending build context to Docker daemon 17.92 kB
+Step 1 : FROM centos:6.7
+ ---&gt; d95b5ca17cc3
+Step 2 : MAINTAINER Fisher "fisher@sudops.com"
+ ---&gt; Using cache
+ ---&gt; 0c92299c6f03
+Step 3 : RUN /bin/echo 'root:123456' |chpasswd
+ ---&gt; Using cache
+ ---&gt; 0397ce2fbd0a
+Step 4 : RUN useradd runoob
+......
+```
+
+ **注意: 一个镜像不能超过 127 层**
+
+
+
+​	启动一个容器
+
+```
+$ sudo docker run -t druihng/centos:6.7 /bin/bash
+```
+
+​	可以设置新镜像的标签
+
+```
+$ sudo docker tag 860c279d2fec runoob/centos:dev
+$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+druihng/centos       6.7                 860c279d2fec        5 hours ago         190.6 MB
+runoob/centos       dev                 860c279d2fec        5 hours ago         190.6 MB
+```
+
+
+
+##### 4.3 从本地文件系统导入
+
+比如，先下载了一个 ubuntu-14.04 的镜像，之后使用以下命令导入：
+
+```
+sudo cat ubuntu-14.04-x86_64-minimal.tar.gz  |docker import - ubuntu:14.04
+```
+
+然后查看新导入的镜像。
+
+```
+docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+ubuntu              14.04               05ac7c0b9383        17 seconds ago      215.5 MB
+```
+
+
+
+##### 4.4 上传镜像
+
+用户可以通过 `docker push` 命令，把自己创建的镜像上传到仓库中来共享。例如，用户在 Docker Hub 上完成注册后，可以推送自己的镜像到仓库中。
+
+```
+$ sudo docker push ouruser/sinatra
+The push refers to a repository [ouruser/sinatra] (len: 1)
+Sending image list
+Pushing repository ouruser/sinatra (3 tags)
+```
+
+
+
+
+
+#### 5	存出和载入镜像
+
+
+
+##### 5.1	存出镜像
+
+如果要导出镜像到本地文件，可以使用 `docker save` 命令。
+
+```
+$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+ubuntu              14.04               c4ff7513909d        5 weeks ago         225.4 MB
+...
+$sudo docker save -o ubuntu_14.04.tar ubuntu:14.04
+```
+
+
+
+##### 5.2	载入镜像
+
+可以使用 `docker load` 从导出的本地文件中再导入到本地镜像库，例如
+
+```
+$ sudo docker load --input ubuntu_14.04.tar
+```
+
+或
+
+```
+$ sudo docker load < ubuntu_14.04.tar
+```
+
+这将导入镜像以及其相关的元数据信息（包括标签等）。
+
+
+
+#### 6.	移除本地镜像
+
+如果要移除本地的镜像，可以使用 `docker rmi` 命令。注意 `docker rm` 命令是移除容器。
+
+```sh
+$ sudo docker rmi training/sinatra
+Untagged: training/sinatra:latest
+Deleted: 5bc342fa0b91cabf65246837015197eecfa24b2213ed6a51a8974ae250fedd8d
+Deleted: ed0fffdcdae5eb2c3a55549857a8be7fc8bc4241fb19ad714364cbfd7a56b22f
+Deleted: 5c58979d73ae448df5af1d8142436d81116187a7633082650549c52c3a2418f0
+```
+
+**注意：在删除镜像之前要先用 `docker rm` 删掉依赖于这个镜像的所有容器。**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
