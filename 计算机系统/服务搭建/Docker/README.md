@@ -73,6 +73,10 @@ When you use Docker, you are creating and using images, containers, networks, vo
 
 
 
+
+
+
+
 *IMAGES*
 
 An *image* is a read-only template with instructions for creating a Docker container. Often, an image is *based on* another image, with some additional customization. For example, you may build an image which is based on the `ubuntu` image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.
@@ -125,11 +129,7 @@ Docker is written in [Go](https://golang.org/) and takes advantage of several fe
 
 
 
-
-
 ## 使用示例
-
-
 
 
 
@@ -139,6 +139,8 @@ Docker is written in [Go](https://golang.org/) and takes advantage of several fe
 
 * 管理和使用本地镜像
 * 创建镜像
+
+
 
 
 
@@ -187,6 +189,8 @@ Docker is written in [Go](https://golang.org/) and takes advantage of several fe
 > | `.CreatedAt`    | Time when the image was created          |
 > | `.Size`         | Image disk size                          |
 
+
+
 Image diget 不等于 Image ID，它们是两个不同的概念。
 
 ```sh
@@ -195,7 +199,7 @@ $ docker images
 
 # List images by name and tag
 $ docker images ubuntu   
-# $ docker images ubuntu:12.02
+# docker images ubuntu:12.02
 
 # filter
 $ docker images -f "dangling=true"
@@ -207,20 +211,19 @@ $ docker images --filter=reference='busy*:*libc'
 # 多个过滤
 $ docker images --filter=reference='busy*:uclibc' --filter=reference='busy*:glibc'
 
-# format
-$ docker images --format "{{.ID}}: {{.Repository}}"
-$ docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}"
+# format 
+#注意：此处双括号之间多加了一个空格，以免gitbook可以正常运行
+$ docker images --format "{ {.ID} }: { {.Repository} }"  
+$ docker images --format "table { {.ID} }\t{ {.Repository} }\t{ {.Tag} }"
 ```
-
-
 
 > **注意**
 >
-> 镜像的 `ID` 唯一标识了镜像
->
-> `TAG` 信息用来标记来自同一个仓库的不同镜像。仓库中有多个镜像，通过 `TAG` 信息来区分发行版本。
+> 镜像的 `ID` 唯一标识了镜像`TAG` 信息用来标记来自同一个仓库的不同镜像。仓库中有多个镜像，通过 `TAG` 信息来区分发行版本。
 >
 > 如果不指定具体的标记，则默认使用 `latest` 标记信息。
+
+
 
 
 
@@ -305,13 +308,13 @@ root@fe7fc4bd8fc9:/#
 **docker commit**
 
 > ```none
->docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+> docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 > ```
-> 
+>
 > | Name, shorthand  | Default | Description                                                  |
->| ---------------- | ------- | ------------------------------------------------------------ |
+> | ---------------- | ------- | ------------------------------------------------------------ |
 > | `--author , -a`  |         | Author (e.g., “John Hannibal Smith [hannibal@a-team.com](mailto:hannibal@a-team.com)”) |
->| `--change , -c`  |         | Apply Dockerfile instruction to the created image            |
+> | `--change , -c`  |         | Apply Dockerfile instruction to the created image            |
 > | `--message , -m` |         | Commit message                                               |
 > | `--pause , -p`   | `true`  | Pause container during commit                                |
 
@@ -482,44 +485,6 @@ Deleted: 5c58979d73ae448df5af1d8142436d81116187a7633082650549c52c3a2418f0
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Docker容器
 
 
@@ -529,22 +494,6 @@ Deleted: 5c58979d73ae448df5af1d8142436d81116187a7633082650549c52c3a2418f0
 
 
 ## Network
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
