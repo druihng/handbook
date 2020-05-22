@@ -2,8 +2,10 @@
 
 * [概述](README.md)
 
+* [Thinking](Thinking/README.md)
+
 * [计算机系统](计算机系统/README.md)
-    
+  
     * [计算机终端（Computer-Terminal）](计算机系统/Computer-Terminal.md)
     * [Linux](计算机系统/Linux/README.md)
         * [Unix-like系统管理操作](计算机系统/Linux/Unix-like系统管理操作/README.md)
@@ -25,16 +27,18 @@
 * [Network](Network/README.md)
 
 * [Virt](Virt/README.md)
-    
+  
     * [KVM](KVM/README.md)
     
 * [DevOps](DevOps/README.md)
 
 * [Git](Git/README.md)
     * [git](Git/git/README.md)
+      * [Git基础](Git/git/Git基础/README.md)
+      * [Git分支](Git/git/Git分支/README.md)
     * [gitbook](Git/gitbook/README.md)
     * [hexo](Git/hexo/README.md)
-    
+
 * [Stack](Stack/README.md)
     * [C++](Stack/C++/README.md)
     * [CSharp](Stack/CSharp/README.md)
