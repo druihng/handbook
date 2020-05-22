@@ -34,8 +34,8 @@
 
 * [Git](Git/README.md)
     * [git](Git/git/README.md)
-      * [Git基础](Git/git/Git基础/README.md)
-      * [Git分支](Git/git/Git分支/README.md)
+      * [1. Git基础](Git/git/1. Git基础/README.md)
+      * [2. Git分支](Git/git/2. Git分支/README.md)
     * [gitbook](Git/gitbook/README.md)
     * [hexo](Git/hexo/README.md)
 
