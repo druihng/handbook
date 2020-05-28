@@ -349,9 +349,26 @@ index 0531583..0c46179 100644
 
 #### 提交更新
 
+现在的暂存区已经准备就绪，可以提交了。 在此之前，请务必确认还有什么已修改或新建的文件还没有 `git add` 过， 否则提交的时候不会记录这些尚未暂存的变化。 这些已修改但未暂存的文件只会保留在本地磁盘。 所以，每次准备提交前，先用 `git status` 看下，你所需要的文件是不是都已暂存起来了， 然后再运行提交命令 `git commit`：
 
+```console
+$ git commit
+```
 
-**跳过使用暂存区域**
+这样会启动你选择的文本编辑器来输入提交说明。
+
+| Note                                                         |
+| ------------------------------------------------------------ |
+| 启动的编辑器是通过 Shell 的环境变量 `EDITOR` 指定的，一般为 vim 或 emacs。 当然也可以按照 [起步](https://git-scm.com/book/zh/v2/ch00/ch01-getting-started) 介绍的方式， 使用 `git config --global core.editor` 命令设置你喜欢的编辑器。 |
+
+  
+
+```
+git commit
+-m, --message <message> commit message
+-v, --verbose         show diff in commit message template
+-a, --all             commit all changed files
+```
 
 
 
