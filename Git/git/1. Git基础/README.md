@@ -1,3 +1,5 @@
+
+
 # 1. Git基础
 
 
@@ -343,7 +345,26 @@ index 0531583..0c46179 100644
 
 **移动文件**
 
+```console
+$ git mv README.md README
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
 
+    renamed:    README.md -> README
+```
+
+其实，运行 `git mv` 就相当于运行了下面三条命令：
+
+```console
+$ mv README.md README
+$ git rm README.md
+$ git add README
+```
+
+如此分开操作，Git 也会意识到这是一次重命名，所以不管何种方式结果都一样。 两者唯一的区别是，`mv` 是一条命令而非三条命令，直接用 `git mv` 方便得多
 
 
 
@@ -361,8 +382,6 @@ $ git commit
 | ------------------------------------------------------------ |
 | 启动的编辑器是通过 Shell 的环境变量 `EDITOR` 指定的，一般为 vim 或 emacs。 当然也可以按照 [起步](https://git-scm.com/book/zh/v2/ch00/ch01-getting-started) 介绍的方式， 使用 `git config --global core.editor` 命令设置你喜欢的编辑器。 |
 
-  
-
 ```
 git commit
 -m, --message <message> commit message
@@ -374,7 +393,226 @@ git commit
 
 #### 移除文件跟踪
 
+要从 Git 中移除某个文件，就必须要从已跟踪文件清单中移除（确切地说，是从暂存区域移除），然后提交。 可以用 `git rm` 命令完成此项工作，并连带从工作目录中删除指定的文件，这样以后就不会出现在未跟踪文件清单中了。
 
+```
+$ git rm -h
+usage: git rm [<options>] [--] <file>...
+    --cached              only remove from the index
+    -f, --force           override the up-to-date check
+    -r                    allow recursive removal
+```
+
+如果要删除之前修改过或已经放到暂存区的文件，则必须使用强制删除选项 `-f`（译注：即 force 的首字母）。 这是一种安全特性，用于防止误删尚未添加到快照的数据，这样的数据不能被 Git 恢复。
+
+另外一种情况是，我们想把文件从 Git 仓库中删除（亦即从暂存区域移除），但仍然希望保留在当前工作目录中。 换句话说，你想让文件保留在磁盘，但是并不想让 Git 继续跟踪。使用 `--cached` 选项
+
+删除非空目录需要递归删除，使用`-r`选项。
+
+```sh
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio
+$ git init
+Initialized empty Git repository in C:/Users/Druihng/Desktop/sudio/.git/
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ echo "hello" >> hello
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ echo "world" >> world
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git add .
+warning: LF will be replaced by CRLF in hello.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in world.
+The file will have its original line endings in your working directory.
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git commit -m "init"
+[master (root-commit) 091d271] init
+ 2 files changed, 2 insertions(+)
+ create mode 100644 hello
+ create mode 100644 world
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git log
+commit 091d271951be66e3bde880366d8e5996868eca9c (HEAD -> master)
+Author: druihng <druihng@yeah.net>
+Date:   Fri May 29 11:11:44 2020 +0800
+
+    init
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git rm --cached hello
+rm 'hello'
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        deleted:    hello
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        hello
+
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git commit "rm hello"
+error: pathspec 'rm hello' did not match any file(s) known to git.
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git log
+commit 091d271951be66e3bde880366d8e5996868eca9c (HEAD -> master)
+Author: druihng <druihng@yeah.net>
+Date:   Fri May 29 11:11:44 2020 +0800
+
+    init
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git commit -m "rm hello"
+[master b904b18] rm hello
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 hello
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git log
+commit b904b185804fc76d8ace73da16ea5325d3f592b6 (HEAD -> master)
+Author: druihng <druihng@yeah.net>
+Date:   Fri May 29 11:13:08 2020 +0800
+
+    rm hello
+
+commit 091d271951be66e3bde880366d8e5996868eca9c
+Author: druihng <druihng@yeah.net>
+Date:   Fri May 29 11:11:44 2020 +0800
+
+    init
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ vim world
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   world
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        hello
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git rm world
+error: the following file has local modifications:
+    world
+(use --cached to keep the file, or -f to force removal)
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git rm world --cached
+rm 'world'
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        deleted:    world
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        hello
+        world
+
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ cat world
+world  dd
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git add world
+warning: LF will be replaced by CRLF in world.
+The file will have its original line endings in your working directory.
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   world
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        hello
+
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git rm world
+error: the following file has changes staged in the index:
+    world
+(use --cached to keep the file, or -f to force removal)
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git rm -f world
+rm 'world'
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        deleted:    world
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        hello
+
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ ll
+total 1
+-rw-r--r-- 1 Druihng 197121 6 5月  29 11:11 hello
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$
+```
+
+注意：空目录不是Git的关注点，文件才是！
+
+```sh
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ mkdir empty
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+```
 
 
 
@@ -385,6 +623,12 @@ git commit
 
 
 ## 1.7	撤销操作
+
+在任何一个阶段，你都有可能想要撤消某些操作。注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。
+
+
+
+
 
 
 
