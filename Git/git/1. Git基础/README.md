@@ -283,7 +283,63 @@ MM README.md
 
 如果 `git status` 命令的输出对于你来说过于简略，而你想知道具体修改了什么地方，可以用 `git diff` 命令。
 
-hello
+```
+git diff [ <a> [<b>] ] （b版本相较于a版本的差异）
+```
+
+一般<b>可以缺省或者<a>、<b>同时缺省。<b>缺省表示b版本默认为工作副本；<a>、<b>同时缺省，表示b版本为工作副本，a版本为暂存区版本。
+
+```
+git diff 本身只显示尚未暂存的改动，即看暂存前后的变化
+git diff --staged (暂存文件与最后一次提交的文件差异)
+git diff --cached 查看已经暂存起来的变化（ --staged 和 --cached 是同义词）
+```
+
+```
+$ git diff HEAD^ HEAD
+diff --git "a/Git/git/1. Git\345\237\272\347\241\200/README.md" "b/Git/git/1. Git\345\237\272\347\241\200/README.md"
+index 0c46179..0531583 100644
+--- "a/Git/git/1. Git\345\237\272\347\241\200/README.md"
++++ "b/Git/git/1. Git\345\237\272\347\241\200/README.md"
+@@ -183,21 +183,107 @@ Figure 8. 文件的状态变化周期
+
+ #### 检查当前文件状态
+
++```
++$ git status -h
++usage: git status [<options>] [--] <pathspec>...
++
++    -s, --short           show status concisely
++    -b, --branch          show branch information
++```
++
+
+```
+
+```
+$ git diff HEAD HEAD^
+diff --git "a/Git/git/1. Git\345\237\272\347\241\200/README.md" "b/Git/git/1. Git\345\237\272\347\241\200/README.md"
+index 0531583..0c46179 100644
+--- "a/Git/git/1. Git\345\237\272\347\241\200/README.md"
++++ "b/Git/git/1. Git\345\237\272\347\241\200/README.md"
+@@ -183,107 +183,21 @@ Figure 8. 文件的状态变化周期
+
+ #### 检查当前文件状态
+
+-```
+-$ git status -h
+-usage: git status [<options>] [--] <pathspec>...
+-
+-    -s, --short           show status concisely
+-    -b, --branch          show branch information
+-```
+-
+
+```
+
+| Note                                                         |
+| ------------------------------------------------------------ |
+| Git Diff 的插件版本 在本书中，我们使用 `git diff` 来分析文件差异。 但是你也可以使用图形化的工具或外部 diff 工具来比较差异。 可以使用 `git difftool` 命令来调用 emerge 或 vimdiff 等软件（包括商业软件）输出 diff 的分析结果。 使用 `git difftool --tool-help` 命令来看你的系统支持哪些 Git Diff 插件。 |
 
 **移动文件**
 
