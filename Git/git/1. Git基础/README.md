@@ -563,6 +563,119 @@ Untracked files:
 
         hello
 
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   world
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        hello
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git rm world
+error: the following file has local modifications:
+    world
+(use --cached to keep the file, or -f to force removal)
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git rm world --cached
+rm 'world'
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        deleted:    world
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        hello
+        world
+
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ cat world
+world  dd
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git add world
+warning: LF will be replaced by CRLF in world.
+The file will have its original line endings in your working directory.
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   world
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        hello
+
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git rm world
+error: the following file has changes staged in the index:
+    world
+(use --cached to keep the file, or -f to force removal)
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git rm -f world
+rm 'world'
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        deleted:    world
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        hello
+
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ ll
+total 1
+-rw-r--r-- 1 Druihng 197121 6 5月  29 11:11 hello
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$
+```
+
+注意：空目录不是Git的关注点，文件才是！
+
+```sh
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ mkdir empty
+
+Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+```
 
 Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
 $ git rm world
