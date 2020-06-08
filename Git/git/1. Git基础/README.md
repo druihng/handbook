@@ -712,7 +712,7 @@ $
 
 注意：空目录不是Git的关注点，文件才是！
 
-```sh
+​```sh
 Druihng@DESKTOP-CNMOUGE MINGW64 ~/Desktop/sudio (master)
 $ git status
 On branch master
@@ -802,6 +802,47 @@ Git 作为一个系统，是以它的一般操作来管理并操纵这三棵树�
 
 
 ## 1.8	远程仓库的使用
+
+#### git remote
+
+> Manage the set of repositories ("remotes") whose branches you track.
+>
+> 
+
+#### 查看远程仓库
+
+```
+git remote
+git remote -v
+```
+
+
+
+#### 添加远程仓库
+
+```
+git remote add <name> <url>
+```
+
+
+
+#### 从远程仓库中抓取和拉取
+
+
+
+#### 推送到远程仓库
+
+
+
+
+
+#### 远程仓库的重命名和移除
+
+
+
+
+
+
 
 
 
