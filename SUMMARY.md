@@ -7,6 +7,8 @@
 * [计算机系统](计算机系统/README.md)
   
     * [计算机终端（Computer-Terminal）](计算机系统/Computer-Terminal.md)
+    * [内存管理](计算机系统/内存管理.md)
+    * [程序的机器级表示](计算机系统/程序的机器级表示.md)
     * [Linux](计算机系统/Linux/README.md)
         * [Unix-like系统管理操作](计算机系统/Linux/Unix-like系统管理操作/README.md)
     * [服务搭建](计算机系统/服务搭建/README.md)
@@ -71,6 +73,10 @@
             * [异步IO](Stack/JS/NodeJS/异步IO.md)
       * [异步编程](Stack/JS/NodeJS/异步编程.md)
 
+* [自动测试](自动测试/README.md)
+
+  * [robot framework](自动测试/robot framework/robot framework.md)
+
 * [汽车标定](汽车标定/README.md)
 
   * [XCP](汽车标定/XCP/README.md)
@@ -78,6 +84,8 @@
     * [XCP FEATURES AND CONCEPTS](汽车标定/XCP/XCP FEATURES AND CONCEPTS.md)
 
   * [A2L](汽车标定/a2l/README.md)
+  
+  * [XIL](汽车标定/XIL/README.md)
   
     
 
