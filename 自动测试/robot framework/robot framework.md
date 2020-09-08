@@ -66,6 +66,12 @@ Which interpreter to use depends on the needed test libraries and test environme
   Rebot 3.0 (Python 2.7.10 on linux2)
   ```
 
+* docutils
+
+  ```
+  pip install docutils
+  ```
+
   
 
 * pip安装ride
@@ -127,4 +133,56 @@ Robot Framework itself is written with [Python](http://python.org) and naturally
 
 
 
+
+# 测试
+
+Robot Framework 中的测试用例通过命令行执行, 执行的结果默认生成一个XML格式的 [输出文件(Output.xml)](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/ExecutingTestCases/OutputFiles.html#output-file) 和HTML格式的 report and log. 执行完毕后, 这些输出文件可以通过Rebot工具整合或者进行 [后期处理](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/ExecutingTestCases/PostProcessing.html#post-processing-outputs).
+
+
+
+## 开始执行测试
+
+```
+robot [options] data_sources
+python|jython|ipy -m robot [options] data_sources
+python|jython|ipy path/to/robot/ [options] data_sources
+java -jar robotframework.jar [options] data_sources
+```
+
+
+
+### 指定待执行的测试数据
+
+Robot Framework 中的测试用例是通过 [文件](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/CreatingTestSuites.html#test-case-files) 和 [目录](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/CreatingTestSuites.html#test-suite-directories) 的方式创建和组织的, 所以要执行时把这些文件或目录的路径传给执行脚本就可以了. 
+
+指定的文件或者目录将被用来创建顶层测试套件, 除非通过命令行选项 `--name` [设置名字](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/ExecutingTestCases/ConfiguringExecution.html#setting-the-name), 否则这个测试套件的名字也就是 [文件或者目录名](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/CreatingTestSuites.html#test-suite-name-and-documentation). 还可以一次给出多个测试用例文件或目录, 之间用空格隔开. 这种情况下, Robot Framework自动创建顶层测试套件,  这些指定的文件和目录都成为它的子套件. 这个顶层的测试套件的名字由各子套件的名字使用 `` & `` 拼接而成. 例如,  下面的例子中的顶层套件的名字是 *My Tests & Your Tests*. 可以想见这个自动创建的名字将会非常冗长, 所以大多数情况下, 最好还是通过 `--name` 命令行选项来指定一个名字, 如下面的第二个例子:
+
+```
+robot my_tests.robot your_tests.robot
+robot --name Example path/to/tests/pattern_*.robot
+```
+
+
+
+### 命令行选项
+
+#### 短选项和长选项
+
+选项总是有一个较长的名字, 如 `--name`, 最常用的那些选项同时还有一个短名字, 例如 `-N`. 此外, 长选项名称可以不用写全, 只要给出的部分是唯一无歧义的即可. 
+
+短选项和截短的选项在手动执行测试用例时都挺实用, 不过在 start-up scripts 中推荐使用长选项名称, 因为它们更易懂.
+
+长选项的格式是大小写无关的, 这有益于写出更易读的选项名字. 
+
+#### 设置选项值
+
+大多数的选项需要在选项名称后面给定一个值. 长选项和短选项都接受在空格后面跟上选项的值, 例如,  `--include tag` 或 `-i tag`. 同时对于长选项, 还可以使用等号(`=`), 例如 `--include=tag`, 而对于短选项, 中间的分隔符则是可用省略的, 如 `-itag`.
+
+有的选项可用被指定多次. 例如, `--variable VAR1:value --variable VAR2:another` 设置了两个变量. 如果一个选项只能接受一个值而被指定了多次, 则生效的将是最后的那个.
+
+#### 禁用不带值得选项
+
+不接受值的选项可用通过在选项名前加上(或去掉)前缀 `no` 来禁用. 最后的那个选项优先级最高.
+
+#### 简单模式
 
