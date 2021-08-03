@@ -186,3 +186,30 @@ robot --name Example path/to/tests/pattern_*.robot
 
 #### 简单模式
 
+
+
+
+
+
+
+
+
+## [测试数据表格](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/TestDataSyntax.html#id43)
+
+测试数据按结构划分有4种类型, 如下表所列. 这些测试数据表格由表格中第一个单元格标示. 4种表格的名称分别是 `Settings`, `Variables`, `Test Cases`, 和 `Keywords`. 匹配时不区分大小写, 同时单数形式如 `Setting` 和 `Test Case` 也可接受.
+
+| Table      | Used for                                                     |
+| ---------- | ------------------------------------------------------------ |
+| Settings   | 1) 导入 [测试库](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/UsingTestLibraries.html#test-libraries), [资源文件](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/ResourceAndVariableFiles.html#resource-files), [变量文件](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/ResourceAndVariableFiles.html#variable-files). 2) 为 [创建测试套件](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/CreatingTestSuites.html#test-suites) 和 test cases 定义元数据 |
+| Variables  | 定义 [变量](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/Variables.html#variables) |
+| Test Cases | [创建测试用例](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/CreatingTestCases.html#creating-test-cases) |
+| Keywords   | [创建用户关键字](https://robotframework-userguide-cn.readthedocs.io/zh_CN/latest/CreatingTestData/CreatingUserKeywords.html#creating-user-keywords) |
+
+
+
+
+
+
+
+
+
